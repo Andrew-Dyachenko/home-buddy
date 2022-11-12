@@ -31,9 +31,10 @@
 	},
 	"browserslist": {
 		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
+			"last 3 versions",
+			"safari >= 12",
+			"ios_saf >= 12",
+			"not dead"
 		],
 		"development": [
 			"last 1 chrome version",
