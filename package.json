@@ -6,7 +6,13 @@
 		"node": "~16",
 		"npm": "~8"
 	},
-	"private": true,
+	"description": "React application - the main page of the Home Buddy website, made according to the test task of the Sirena Group company",
+	"author": "Andrew-Dyachenko",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Andrew-Dyachenko/home-buddy.git"
+	},
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^13.4.0",
