@@ -1,35 +1,5 @@
 .App {
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	flex-direction: column;
 	min-height: 100vh;
-}
-
-.logo-wrapper {
-	padding: 0.25rem;
-}
-
-.logo {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 32px;
-	height: 32px;
-	background-color: #2f54eb;
-	border-radius: 6px;
-	color: #fff;
-	font-weight: 700;
-	position: relative;
-}
-
-.logo::after {
-	content: "";
-	position: absolute;
-	width: 4px;
-	height: 4px;
-	border-radius: 50%;
-	background-color: #fa8c16;
-	right: 5%;
-	bottom: 5%;
-	transform: translate(-50%, -50%);
 }
