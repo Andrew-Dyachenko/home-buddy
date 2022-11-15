@@ -6,30 +6,22 @@
 		"node": "~16",
 		"npm": "~8"
 	},
-	"description": "React application - the main page of the Home Buddy website, made according to the test task of the Sirena Group company",
+	"description": "Next.js application - the main page of the Home Buddy website, made according to the test task of the Sirena Group company",
 	"author": "Andrew-Dyachenko",
+	"contributors": [
+		"Andrew Dyachenko <north.inhale@gmail.com> (https://github.com/Andrew-Dyachenko)"
+	],
 	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Andrew-Dyachenko/home-buddy.git"
 	},
-	"dependencies": {
-		"@testing-library/jest-dom": "^5.16.5",
-		"@testing-library/react": "^13.4.0",
-		"@testing-library/user-event": "^13.5.0",
-		"bootstrap": "^5.2.2",
-		"classnames": "^2.3.2",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"react-scripts": "5.0.1",
-		"web-vitals": "^2.1.4"
-	},
 	"scripts": {
 		"rome": "node_modules/rome/bin/rome",
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -49,6 +41,14 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"dependencies": {
+		"bootstrap": "^5.2.2",
+		"eslint": "8.27.0",
+		"eslint-config-next": "13.0.3",
+		"next": "13.0.3",
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
 	},
 	"devDependencies": {
 		"rome": "^10.0.1",
