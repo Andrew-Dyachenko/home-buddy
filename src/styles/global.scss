@@ -1,7 +1,51 @@
-@use "./bootstrap";
+@use "./conf";
+@import "~normalize.css/normalize.css";
 
-.App {
+*,
+::before,
+::after {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: conf.$font-size-root;
+	min-width: conf.$xxxs; // If less then horizontal scroll
+
+	/* Indicates that user has notified the system that
+	they prefer an interface that removes or replaces
+	the types of motion-based animation that trigger
+	discomfort for those with vestibular motion disorders.*/
+	@media (prefers-reduced-motion: no-preference) {
+		scroll-behavior: smooth;
+	}
+}
+
+:any-link {
+	text-decoration: none;
+
+	&:hover,
+	&:active {
+		text-decoration: underline;
+	}
+}
+
+body {
+	font-family: conf.$font-family-sans-serif;
+	line-height: conf.$global-line-height;
+	background-color: conf.$body-bg;
+	color: conf.$body-color;
+}
+
+#__next {
 	display: flex;
+	align-items: stretch;
 	flex-direction: column;
 	min-height: 100vh;
+}
+
+.container {
+	width: 100%;
+	max-width: conf.$xl;
+	padding: 0 conf.$global-padding;
+	margin: 0 auto;
 }
