@@ -1,0 +1,27 @@
+@use "../conf";
+@import "~/node_modules/bootstrap/scss/functions";
+@import "~/node_modules/bootstrap/scss/variables";
+
+// @function color-contrast($background, $color-contrast-dark: $color-contrast-dark, $color-contrast-light: $color-contrast-light, $min-contrast-ratio: $min-contrast-ratio) {
+@mixin isomorphic-color-contrast(
+	$background,
+	$color-contrast-dark: conf.$black,
+	$color-contrast-light: conf.$white,
+	$property: color,
+	$min-contrast-ratio: conf.$min-contrast-ratio
+) {
+	// Fallback color
+	#{$property}: color-contrast(
+		$background,
+		$color-contrast-dark,
+		$color-contrast-light,
+		$min-contrast-ratio
+	);
+
+	// https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-contrast()
+	@supports (
+		color: #{"color-contrast(#{$background} vs #{$color-contrast-dark}, #{$color-contrast-light})"}
+	) {
+		color: #{"color-contrast(#{$background} vs #{$color-contrast-dark}, #{$color-contrast-light})"};
+	}
+}
