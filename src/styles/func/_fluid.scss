@@ -1,0 +1,9 @@
+@use "@sass-fairy/math/math";
+
+@function fluid($min, $max, $wmin, $wmax) {
+	@return calc(
+		#{$max} + (#{math.unitless($max - $min)}) * (100vw - #{$wmax}) / #{math.unitless(
+				$wmax - $wmin
+			)}
+	);
+}
