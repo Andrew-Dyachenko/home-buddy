@@ -1,0 +1,108 @@
+@use "@sass-fairy/math/math";
+@use "../../src/styles/conf";
+@use "../../src/styles/func";
+@use "../../src/styles/mix";
+
+.header {
+	$-bgc: conf.$royal-blue;
+	@include mix.isomorphic-color-contrast(
+		$-bgc,
+		conf.$body-color,
+		conf.$white
+	);
+	background-color: $-bgc;
+
+	&__container {
+		$padding-y--xxs: math.div(conf.$global-padding, 2);
+		$padding-y--xl: conf.$global-padding;
+
+		display: grid;
+		grid-auto-flow: row;
+		grid-template-columns: auto 1fr;
+		align-items: center;
+		grid-template-rows: auto;
+		grid-template-areas: "header__brand header__nav";
+		column-gap: math.div(conf.$grid-gutter-width, 2);
+		padding: {
+			top: $padding-y--xxs;
+			bottom: $padding-y--xxs;
+		}
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+		}
+
+		@media (min-width: conf.$xl) {
+			padding: {
+				top: $padding-y--xl;
+				bottom: $padding-y--xl;
+			}
+		}
+	}
+
+	&__brand {
+		grid-area: header__brand;
+	}
+
+	&__nav {
+		grid-area: header__nav;
+
+		&-list {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			list-style: none;
+			padding: 0;
+			margin: 0;
+
+			&:not(:empty) {
+				margin: math.div(conf.$grid-gutter-width, -8)
+					math.div(conf.$grid-gutter-width, -4);
+			}
+		}
+
+		&-item {
+			$-fs--xxs: math.div(14, 16) + 0rem;
+			$-fs--xl: math.div(14, 16) + 0rem;
+
+			/* Yes, it's a different line height between mobile and desktop mockups,
+			 I don't know why the designer has chosen this. 🤷... */
+			$-lh--xxs: math.div(17, 14);
+			$-lh--xl: math.div(20, 14);
+
+			font-weight: 500;
+			line-height: $-lh--xxs;
+			font-size: $-fs--xxs;
+			padding: math.div(conf.$grid-gutter-width, 8)
+				math.div(conf.$grid-gutter-width, 4);
+
+			@at-root :root:not([dir="rtl"]) & {
+				text-align: right;
+			}
+
+			@at-root :root[dir="rtl"] & {
+				text-align: left;
+			}
+
+			@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+				// Smooth line-height change according to layout
+				line-height: func.fluid(
+					(math.unitless($-fs--xxs) * $-lh--xxs) *
+						conf.$font-size-root,
+					(math.unitless($-fs--xl) * $-lh--xl) * conf.$font-size-root,
+					conf.$xxs,
+					conf.$xl
+				);
+			}
+
+			@media (min-width: conf.$xl) {
+				line-height: $-lh--xl;
+			}
+		}
+
+		&-link {
+			&:any-link {
+				color: inherit;
+			}
+		}
+	}
+}

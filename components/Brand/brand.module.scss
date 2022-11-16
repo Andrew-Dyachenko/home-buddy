@@ -1,0 +1,89 @@
+@use "@sass-fairy/math/math";
+@use "../../src/styles/conf";
+@use "../../src/styles/func";
+
+.brand {
+	display: inline-flex;
+	flex-direction: column;
+	&:any-link {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	&__forehead {
+		$-fs--xxs: math.div(
+				/*This font size in the desiner's mockups, I do not know why 🤷... */
+					24.1743,
+				math.unitless(conf.$font-size-root)
+			) + 0rem;
+		$-fs--xl: math.div(30, math.unitless(conf.$font-size-root)) + 0rem;
+		$-lh--xxs: math.div(29, 24.1743);
+		$-lh--xl: math.div(37, 30);
+
+		font-weight: 700;
+		font-size: $-fs--xxs;
+		line-height: $-lh--xxs;
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+			// Smooth font-size change according to layout
+			font-size: func.fluid(
+				math.unitless($-fs--xxs) * conf.$font-size-root,
+				math.unitless($-fs--xl) * conf.$font-size-root,
+				conf.$xxs,
+				conf.$xl
+			);
+
+			// Smooth line-height change according to layout
+			line-height: func.fluid(
+				(math.unitless($-fs--xxs) * $-lh--xxs) * conf.$font-size-root,
+				(math.unitless($-fs--xl) * $-lh--xl) * conf.$font-size-root,
+				conf.$xxs,
+				conf.$xl
+			);
+		}
+
+		@media (min-width: conf.$xl) {
+			font-size: $-fs--xl;
+			line-height: $-lh--xl;
+		}
+	}
+
+	&__dot {
+		color: conf.$west-side;
+	}
+
+	&__slogan {
+		$-fs--xxs: math.div(9, math.unitless(conf.$font-size-root)) + 0rem;
+		$-fs--xl: math.div(10, math.unitless(conf.$font-size-root)) + 0rem;
+		$-lh--xxs: math.div(11, 9);
+		$-lh--xl: math.div(12, 10);
+
+		font-weight: 500;
+		font-size: $-fs--xxs;
+		line-height: $-lh--xxs;
+		letter-spacing: 0.15em;
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+			// Smooth font-size change according to layout
+			font-size: func.fluid(
+				math.unitless($-fs--xxs) * conf.$font-size-root,
+				math.unitless($-fs--xl) * conf.$font-size-root,
+				conf.$xxs,
+				conf.$xl
+			);
+
+			// Smooth line-height change according to layout
+			line-height: func.fluid(
+				(math.unitless($-fs--xxs) * $-lh--xxs) * conf.$font-size-root,
+				(math.unitless($-fs--xl) * $-lh--xl) * conf.$font-size-root,
+				conf.$xxs,
+				conf.$xl
+			);
+		}
+
+		@media (min-width: conf.$xl) {
+			font-size: $-fs--xl;
+			line-height: $-lh--xl;
+		}
+	}
+}

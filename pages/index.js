@@ -1,12 +1,16 @@
+import { Fragment } from "react";
 import Head from "next/head";
-import styles from "./index.module.scss";
+// import styles from "./index.module.scss";
+// import cn from "classnames";
+import Header from "../components/Header/Header";
 
 export default function Index() {
 	return (
-		<div className={styles.container}>
+		<Fragment>
 			<Head>
-				<title>Home Buddy</title>
+				<title>Home</title>
 			</Head>
-		</div>
+			<Header />
+		</Fragment>
 	);
 }
