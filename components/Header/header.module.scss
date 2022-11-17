@@ -10,7 +10,12 @@
 		conf.$body-color,
 		conf.$white
 	);
-	background-color: $-bgc;
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	// background-color: $-bgc;
 
 	&__container {
 		$padding-y--xxs: math.div(conf.$global-padding, 2);
@@ -118,6 +123,23 @@
 			&:any-link {
 				color: inherit;
 			}
+		}
+	}
+
+	// I know the header height can change it height dynamically,
+	// but it's just a test task and we explicitly know, it won't
+	+ *:not(script) {
+		// Header height at viewport 375px (xxs)
+		padding-top: 56px;
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+			// Smooth padding-top change according to layout
+			padding-top: func.fluid(56px, 81px, conf.$xxs, conf.$xl);
+		}
+
+		@media (min-width: conf.$xl) {
+			// Header height at viewport 1202px (xl)
+			padding-top: 81px;
 		}
 	}
 }
