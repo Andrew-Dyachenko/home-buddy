@@ -29,6 +29,21 @@
 		}
 
 		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+			// Smooth padding-y change according to the layout
+			padding: {
+				top: func.fluid(
+					$padding-y--xxs,
+					$padding-y--xl,
+					conf.$xxs,
+					conf.$xl
+				);
+				bottom: func.fluid(
+					$padding-y--xxs,
+					$padding-y--xl,
+					conf.$xxs,
+					conf.$xl
+				);
+			}
 		}
 
 		@media (min-width: conf.$xl) {
