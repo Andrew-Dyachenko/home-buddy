@@ -1,0 +1,247 @@
+@use "@sass-fairy/math/math";
+@use "../../src/styles/conf";
+@use "../../src/styles/func";
+@use "../../src/styles/mix";
+
+.throne {
+	$-bgc: conf.$royal-blue;
+	background-color: $-bgc;
+
+	&__container {
+		padding: {
+			top: 20px;
+			bottom: 52px;
+		}
+
+		@media (min-width: #{conf.$xxs - 1}) and (max-width: #{conf.$xl - 1}) {
+			// Smooth padding change according to layout mockups
+			padding: {
+				top: func.fluid(20px, 62px, conf.$xxs, conf.$xl);
+				bottom: func.fluid(52px, 101px, conf.$xxs, conf.$xl);
+			}
+		}
+
+		@media (min-width: #{conf.$xl}) {
+			padding: {
+				top: 62px;
+				bottom: 101px;
+			}
+		}
+	}
+
+	&__filler {
+		display: grid;
+		grid-auto-flow: row;
+		grid-row-gap: math.div(conf.$grid-gutter-width, 2);
+
+		@media (min-width: #{conf.$xxs - 1}) and (max-width: #{conf.$m - 1}) {
+			// Smooth grid-row-gap change according to layout mockups
+			grid-row-gap: func.fluid(
+				math.div(conf.$grid-gutter-width, 2),
+				conf.$grid-gutter-width,
+				conf.$xxs,
+				conf.$m
+			);
+		}
+
+		@media (min-width: conf.$m) {
+			grid-auto-flow: column;
+			grid-template-columns:
+				calc(50% - #{math.div(conf.$grid-gutter-width * 0.75, 2)})
+				math.div(conf.$grid-gutter-width, 2)
+				calc(50% - #{math.div(conf.$grid-gutter-width * 0.75, 2)});
+			grid-template-rows:
+				1fr
+				auto
+				conf.$grid-gutter-width * 0.75
+				auto
+				1fr;
+			grid-template-areas:
+				".             . throne__figure"
+				"throne__title . throne__figure"
+				".             . throne__figure"
+				"throne__text  . throne__figure"
+				".             . throne__figure";
+			grid-row-gap: 0;
+		}
+
+		@media (min-width: #{conf.$m + 1}) and (max-width: #{conf.$xl - 1}) {
+			grid-template-columns:
+				calc(
+					49.401709401709402% - #{math.div(
+							conf.$grid-gutter-width * 0.75,
+							2
+						)}
+				)
+				func.fluid(
+					math.div(conf.$grid-gutter-width, 2),
+					conf.$grid-gutter-width * 0.75,
+					conf.$m,
+					conf.$xl
+				)
+				calc(
+					50.598290598290598% - #{math.div(
+							conf.$grid-gutter-width * 0.75,
+							2
+						)}
+				);
+		}
+
+		// According to the mockups,
+		// The left side (title + text) and the right side (image) are not equal.
+		// The left side is 566px, right side is 580px, container is 1170px, gap is from 16-to-24px
+		// 1170 / 100 => 11.7 is 1%
+		// (566 + (gap / 2)) / 11.7 => 49.401709401709402
+		// (580 + (gap / 2)) / 11.7 => 50.598290598290598
+		// I do not know why the designer has chousen this sizes. Not just 50%... 🤷
+		@media (min-width: conf.$xl) {
+			grid-template-columns:
+				calc(
+					49.401709401709402% - #{math.div(
+							conf.$grid-gutter-width * 0.75,
+							2
+						)}
+				)
+				conf.$grid-gutter-width * 0.75
+				calc(
+					50.598290598290598% - #{math.div(
+							conf.$grid-gutter-width * 0.75,
+							2
+						)}
+				);
+		}
+	}
+
+	&__title {
+		$-fs--xxs: math.div(23, math.unitless(conf.$font-size-root)) + 0rem;
+		$-fs--xl: math.div(35, math.unitless(conf.$font-size-root)) + 0rem;
+		$-lh--xxs: math.div(28, 23);
+		$-lh--xl: math.div(48, 35);
+
+		@include mix.isomorphic-color-contrast(
+			$-bgc,
+			conf.$body-color,
+			conf.$white
+		);
+
+		margin: 0;
+		font-weight: 600;
+		font-size: $-fs--xxs;
+		line-height: $-lh--xxs;
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+			// Smooth font-size change according to layout
+			font-size: func.fluid(
+				math.unitless($-fs--xxs) * conf.$font-size-root,
+				math.unitless($-fs--xl) * conf.$font-size-root,
+				conf.$xxs,
+				conf.$xl
+			);
+
+			// Smooth line-height change according to layout
+			line-height: func.fluid(
+				(math.unitless($-fs--xxs) * $-lh--xxs) * conf.$font-size-root,
+				(math.unitless($-fs--xl) * $-lh--xl) * conf.$font-size-root,
+				conf.$xxs,
+				conf.$xl
+			);
+		}
+
+		@media (min-width: #{conf.$m}) {
+			grid-area: throne__title;
+		}
+
+		@media (min-width: conf.$xl) {
+			font-size: $-fs--xl;
+			line-height: $-lh--xl;
+		}
+
+		&-mark {
+			@include mix.isomorphic-color-contrast(
+				/* Crunch for mockups disign.
+				Mockups green color too bright for auto-contrast text color to choose it as white */
+					#000,
+				conf.$body-color,
+				conf.$white
+			);
+
+			border-radius: 0.125em;
+			-webkit-box-decoration-break: clone;
+			box-decoration-break: clone;
+			background-color: conf.$lima;
+		}
+	}
+
+	&__text {
+		$-fs--xxs: math.div(14, math.unitless(conf.$font-size-root)) + 0rem;
+		$-fs--xl: math.div(23, math.unitless(conf.$font-size-root)) + 0rem;
+		$-lh--xxs: math.div(20, 14);
+		$-lh--xl: math.div(32, 23);
+
+		@include mix.isomorphic-color-contrast(
+			$-bgc,
+			conf.$body-color,
+			conf.$white
+		);
+
+		font-size: $-fs--xxs;
+		line-height: $-lh--xxs;
+		font-weight: 500;
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+			// Smooth font-size change according to layout
+			font-size: func.fluid(
+				math.unitless($-fs--xxs) * conf.$font-size-root,
+				math.unitless($-fs--xl) * conf.$font-size-root,
+				conf.$xxs,
+				conf.$xl
+			);
+
+			// Smooth line-height change according to layout
+			line-height: func.fluid(
+				(math.unitless($-fs--xxs) * $-lh--xxs) * conf.$font-size-root,
+				(math.unitless($-fs--xl) * $-lh--xl) * conf.$font-size-root,
+				conf.$xxs,
+				conf.$xl
+			);
+		}
+
+		@media (min-width: #{conf.$m}) {
+			grid-area: throne__text;
+		}
+
+		@media (min-width: conf.$xl) {
+			font-size: $-fs--xl;
+			line-height: $-lh--xl;
+		}
+	}
+
+	&__paragraph {
+		margin: 0;
+
+		&:not(:first-of-type) {
+			margin-top: 1em;
+		}
+		&:not(:last-of-type) {
+			margin-bottom: 1em;
+		}
+	}
+
+	&__figure {
+		margin: 0;
+		line-height: 0;
+		border-radius: 16px;
+
+		@media (min-width: #{conf.$m}) {
+			grid-area: throne__figure;
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+}

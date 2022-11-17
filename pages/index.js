@@ -1,8 +1,7 @@
 import { Fragment } from "react";
 import Head from "next/head";
-// import styles from "./index.module.scss";
-// import cn from "classnames";
 import Header from "../components/Header/Header";
+import Throne from "../components/Throne/Throne";
 
 export default function Index() {
 	return (
@@ -11,6 +10,7 @@ export default function Index() {
 				<title>Home</title>
 			</Head>
 			<Header />
+			<Throne />
 		</Fragment>
 	);
 }
