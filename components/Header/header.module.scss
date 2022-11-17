@@ -27,7 +27,7 @@
 		align-items: center;
 		grid-template-rows: auto;
 		grid-template-areas: "header__brand header__nav";
-		column-gap: math.div(conf.$grid-gutter-width, 2);
+		grid-column-gap: math.div(conf.$grid-gutter-width, 2);
 		padding: {
 			top: $padding-y--xxs;
 			bottom: $padding-y--xxs;
