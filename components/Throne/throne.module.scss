@@ -16,14 +16,14 @@
 		@media (min-width: #{conf.$xxs - 1}) and (max-width: #{conf.$xl - 1}) {
 			// Smooth padding change according to layout mockups
 			padding: {
-				top: func.fluid(20px, 62px, conf.$xxs, conf.$xl);
+				top: func.fluid(20px, 42px, conf.$xxs, conf.$xl);
 				bottom: func.fluid(52px, 101px, conf.$xxs, conf.$xl);
 			}
 		}
 
 		@media (min-width: #{conf.$xl}) {
 			padding: {
-				top: 62px;
+				top: 42px;
 				bottom: 101px;
 			}
 		}
