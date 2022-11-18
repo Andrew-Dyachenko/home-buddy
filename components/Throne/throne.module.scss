@@ -31,6 +31,7 @@
 
 	&__filler {
 		display: grid;
+		align-items: center;
 		grid-auto-flow: row;
 		grid-row-gap: math.div(conf.$grid-gutter-width, 2);
 
@@ -57,11 +58,11 @@
 				auto
 				1fr;
 			grid-template-areas:
-				".             . throne__figure"
-				"throne__title . throne__figure"
-				".             . throne__figure"
-				"throne__text  . throne__figure"
-				".             . throne__figure";
+				".             . throne__media"
+				"throne__title . throne__media"
+				".             . throne__media"
+				"throne__text  . throne__media"
+				".             . throne__media";
 			grid-row-gap: 0;
 		}
 
@@ -227,15 +228,136 @@
 		}
 	}
 
+	&__media {
+		position: relative;
+
+		@media (min-width: #{conf.$m}) {
+			grid-area: throne__media;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+	}
+
 	&__figure {
 		margin: 0;
 		line-height: 0;
 		border-radius: 16px;
+	}
 
-		@media (min-width: #{conf.$m}) {
-			grid-area: throne__figure;
+	&__label {
+		$-bgc: conf.$white;
+		$-fs: math.div(11, 16) + 0rem;
+
+		position: absolute;
+		background-color: $-bgc;
+		border-radius: 8px;
+		font-size: $-fs;
+		line-height: math.div(16, 11);
+		bottom: math.div(conf.$global-padding, 2);
+		max-width: calc(50% - #{math.div(conf.$grid-gutter-width, 4)});
+		align-items: center;
+		display: inline-flex;
+		column-gap: math.div(conf.$grid-gutter-width, 8);
+		min-height: 40px;
+
+		// Logical padding. Depends on the label font-size
+		padding: math.div(
+				math.unitless(math.div(conf.$global-padding, 2)),
+				math.unitless($-fs * conf.$font-size-root)
+			) + 0em;
+
+		@at-root :root:not([dir="rtl"]) & {
+			right: math.div(conf.$global-padding, 2);
+		}
+
+		@at-root :root[dir="rtl"] & {
+			left: math.div(conf.$global-padding, 2);
+		}
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+			/*
+			* Here we just say, depends on the mockups -
+			* make the fluid padding-x from 8px-to-16px, that's it.
+			* Yeah I know... It looks scary,
+			* But we want to respect the parent's font size (em) automatically...
+			*/
+
+			padding: math.div(
+					math.unitless(math.div(conf.$global-padding, 2)),
+					math.unitless($-fs * conf.$font-size-root)
+				) + 0em
+				func.fluid(
+					(
+							math.unitless(
+									math.div(
+											math.unitless(
+												math.div(
+													conf.$global-padding,
+													2
+												)
+											),
+											math.unitless(
+												$-fs * conf.$font-size-root
+											)
+										) + 0em
+								) * math.unitless($-fs)
+						) * conf.$font-size-root,
+					(
+							math.unitless(
+									math.div(
+											math.unitless(conf.$global-padding),
+											math.unitless(
+												$-fs * conf.$font-size-root
+											)
+										) + 0em
+								) * math.unitless($-fs)
+						) * conf.$font-size-root,
+					conf.$xxs,
+					conf.$xl
+				);
+		}
+
+		@media (min-width: conf.$xl) {
+			padding: math.div(
+					math.unitless(math.div(conf.$global-padding, 2)),
+					math.unitless($-fs * conf.$font-size-root)
+				) + 0em
+				math.div(
+					math.unitless(conf.$global-padding),
+					math.unitless($-fs * conf.$font-size-root)
+				) + 0em;
+			grid-template-columns: 1fr 32px;
+			grid-template-rows: 1fr 32px 1fr;
+		}
+
+		&-title {
+			@include mix.isomorphic-color-contrast(
+				$-bgc,
+				conf.$black,
+				conf.$white
+			);
+
+			font-size: inherit;
+			font-family: "Open Sans", sans-serif;
+			margin: 0;
+			font-weight: 700;
+		}
+
+		&-figure {
 			display: flex;
 			align-items: center;
+			justify-content: center;
+			margin: 0;
+			line-height: 1;
+			height: func.fluid(23.48px, 32px, conf.$xxs, conf.$xl);
+			width: func.fluid(23.48px, 32px, conf.$xxs, conf.$xl);
+		}
+
+		&-icon {
+			object-fit: contain;
+			max-height: 100%;
+			max-width: 100%;
 		}
 	}
 
