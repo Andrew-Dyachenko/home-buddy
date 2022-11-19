@@ -1,0 +1,21 @@
+// @use 'sass:math';
+@use "../../src/styles/conf";
+@use "../../src/styles/func";
+
+.main {
+	padding: conf.$global-padding * 3 0;
+
+	@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+		padding: func.fluid(
+				conf.$global-padding * 3,
+				conf.$global-padding * 3,
+				conf.$xxs,
+				conf.$xl
+			)
+			0;
+	}
+
+	@media (min-width: conf.$xl) {
+		padding: conf.$global-padding * 3 0;
+	}
+}
