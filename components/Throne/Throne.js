@@ -31,7 +31,6 @@ export default function Throne() {
 								alt="Facade"
 								width={581}
 								height={326}
-								objectFit='contain'
 								sizes="(max-width: 375px) 343px, 581px"
 								priority={true}
 							/>
