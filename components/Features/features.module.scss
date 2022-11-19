@@ -1,0 +1,102 @@
+// @use "@sass-fairy/math/math";
+@use "sass:math";
+@use "../../src/styles/conf";
+@use "../../src/styles/func";
+@use "../../src/styles/mix";
+
+.features {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+	}
+	&__list {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+
+		&:not(:empty) {
+			margin: math.div(conf.$grid-gutter-width, -2);
+		}
+
+		@media (min-width: conf.$s) {
+			flex-wrap: wrap;
+			flex-direction: row;
+		}
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		column-gap: math.div(conf.$grid-gutter-width, 2);
+		padding: math.div(conf.$grid-gutter-width, 2);
+
+		@media (min-width: conf.$s) {
+			width: math.div(100%, 2);
+			flex-direction: column;
+			column-gap: 0;
+			row-gap: math.div(conf.$grid-gutter-width, math.div(32, 17));
+		}
+
+		@media (min-width: conf.$m) {
+			width: math.div(100%, 3);
+		}
+
+		@media (min-width: conf.$l) {
+			width: math.div(100%, 4);
+		}
+	}
+
+	&__media {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		aspect-ratio: 1 / 1;
+		width: 56px;
+		flex-shrink: 0;
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+			width: func.fluid(56px, 72px, conf.$xxs, conf.$xl);
+		}
+
+		@media (min-width: #{conf.$xl}) {
+			width: 72px;
+		}
+	}
+
+	&__infoblock {
+		@media (max-width: #{conf.$s - 1}) {
+			flex-grow: 1;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			column-gap: math.div(conf.$grid-gutter-width, 8);
+		}
+
+		@media (min-width: conf.$s) {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			row-gap: math.div(conf.$grid-gutter-width, 4);
+		}
+	}
+
+	&__text {
+		@include mix.isomorphic-color-contrast(
+			conf.$body-bg,
+			conf.$body-color,
+			conf.$white
+		);
+
+		letter-spacing: math.div(0.2, 16) + 0em;
+
+		@media (min-width: conf.$s) {
+			text-align: center;
+		}
+		// font-size: 1rem;
+		// line-height: math.div(24, 16);
+	}
+}
