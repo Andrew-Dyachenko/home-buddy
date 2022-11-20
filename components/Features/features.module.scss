@@ -91,6 +91,7 @@
 			conf.$white
 		);
 
+		font-weight: 500;
 		letter-spacing: math.div(0.2, 16) + 0em;
 
 		@media (min-width: conf.$s) {
