@@ -5,17 +5,25 @@
 .main {
 	padding: conf.$global-padding * 3 0;
 
-	@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
-		padding: func.fluid(
-				conf.$global-padding * 3,
-				conf.$global-padding * 3,
-				conf.$xxs,
-				conf.$xl
-			)
-			0;
-	}
+	&__container {
+		> *:not(script) {
+			&:not(:first-of-type) {
+				margin-top: conf.$global-margin * 1.5;
+			}
 
-	@media (min-width: conf.$xl) {
-		padding: conf.$global-padding * 3 0;
+			&:not(:last-of-type) {
+				margin-bottom: conf.$global-margin * 1.5;
+			}
+
+			&[class$="callout--affordable"] {
+				&:not(:first-of-type) {
+					margin-top: conf.$global-margin * 3;
+				}
+
+				@media (min-width: conf.$s) {
+					display: none;
+				}
+			}
+		}
 	}
 }
