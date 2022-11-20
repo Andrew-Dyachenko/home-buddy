@@ -5,6 +5,7 @@
 
 .footer {
 	$-bgc: conf.$royal-blue;
+	margin-top: auto;
 
 	@include mix.isomorphic-color-contrast(
 		$-bgc,
