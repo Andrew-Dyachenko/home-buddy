@@ -1,0 +1,117 @@
+@use "@sass-fairy/math/math";
+@use "../../src/styles/conf";
+@use "../../src/styles/func";
+@use "../../src/styles/mix";
+
+.footer {
+	$-bgc: conf.$royal-blue;
+
+	@include mix.isomorphic-color-contrast(
+		$-bgc,
+		conf.$body-color,
+		conf.$white
+	);
+
+	background-color: $-bgc;
+	padding-top: conf.$global-padding * 1.5;
+	padding-bottom: conf.$global-padding * 3;
+
+	@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+		padding-bottom: func.fluid(
+			conf.$global-padding * 3,
+			conf.$global-padding * math.div(61, 16),
+			conf.$xxs,
+			conf.$xl
+		);
+	}
+
+	@media (min-width: conf.$xl) {
+		padding-bottom: conf.$global-padding * math.div(61, 16);
+	}
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		row-gap: conf.$grid-gutter-width * 0.75;
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$m - 1}) {
+			row-gap: func.fluid(
+				conf.$grid-gutter-width * 0.75,
+				conf.$grid-gutter-width * 0.625,
+				conf.$xxs,
+				conf.$m
+			);
+		}
+
+		@media (min-width: conf.$m) {
+			align-items: center;
+			row-gap: conf.$grid-gutter-width * 0.625;
+		}
+	}
+
+	&__brand {
+		[class*="brand__forehead"] {
+			font-size: math.div(30, math.unitless(conf.$font-size-root)) + 0rem;
+			line-height: math.div(37, 30);
+		}
+	}
+
+	&__nav {
+		&-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+
+			&:not(:empty) {
+				margin: math.div(conf.$grid-gutter-width, -4)
+					math.div(conf.$grid-gutter-width, -2);
+			}
+
+			@media (min-width: conf.$m) {
+				display: flex;
+				flex-wrap: wrap;
+			}
+		}
+
+		&-item {
+			$-fs--xxs: math.div(14, 16) + 0rem;
+			$-fs--m: math.div(12, 16) + 0rem;
+			$-lh--xxs: math.div(16, 14);
+			$-lh--m: math.div(16, 12);
+
+			font-weight: 500;
+			font-size: $-fs--xxs;
+			line-height: $-lh--xxs;
+			padding: math.div(conf.$grid-gutter-width, 4)
+				math.div(conf.$grid-gutter-width, 2);
+
+			@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$m - 1}) {
+				// Smooth font-size change according to layout
+				font-size: func.fluid(
+					math.unitless($-fs--xxs) * conf.$font-size-root,
+					math.unitless($-fs--m) * conf.$font-size-root,
+					conf.$xxs,
+					conf.$m
+				);
+
+				// Smooth line-height change according to layout
+				line-height: func.fluid(
+					(math.unitless($-fs--xxs) * $-lh--xxs) *
+						conf.$font-size-root,
+					(math.unitless($-fs--m) * $-lh--m) * conf.$font-size-root,
+					conf.$xxs,
+					conf.$m
+				);
+			}
+
+			@media (min-width: conf.$m) {
+				font-size: $-fs--m;
+				line-height: $-lh--m;
+			}
+		}
+
+		&-link {
+			color: inherit;
+		}
+	}
+}

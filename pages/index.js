@@ -5,6 +5,7 @@ import Throne from "../components/Throne/Throne";
 import Features from "../components/Features/Features";
 import Main from "../components/Main";
 import Image from "next/image";
+import Footer from "../components/Footer";
 
 export default function Index() {
 	return (
@@ -29,6 +30,7 @@ export default function Index() {
 					You will be surprised how affordable gutter guards are!
 				</div>
 			</Main>
+			<Footer />
 		</Fragment>
 	);
 }
