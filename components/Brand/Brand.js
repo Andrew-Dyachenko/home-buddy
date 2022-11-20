@@ -1,14 +1,19 @@
-import Link from "next/link";
 import styles from "./brand.module.scss";
+import cn from "classnames";
 
-export default function Brand({ href = "/", slogan = "" }) {
+export default function Brand({ href = "/", slogan = "", modificator = "" }) {
 	return (
-		<Link href={href} className={styles.brand}>
+		<a
+			href={href}
+			target="_blank"
+			rel="noreferrer"
+			className={cn(styles.brand, modificator)}
+		>
 			<div className={styles.brand__forehead}>
 				HomeBuddy
 				<span className={styles.brand__dot}>.</span>
 			</div>
 			{slogan && <small className={styles.brand__slogan}>{slogan}</small>}
-		</Link>
+		</a>
 	);
 }
