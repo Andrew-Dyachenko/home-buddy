@@ -5,6 +5,8 @@
 @use "../../src/styles/mix";
 
 .features {
+	display: flex;
+	flex-direction: column;
 	&__container {
 		display: flex;
 		flex-direction: column;
