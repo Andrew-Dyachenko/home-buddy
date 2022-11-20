@@ -6,7 +6,7 @@ export default function Header() {
 	return (
 		<header className={styles.header}>
 			<div className={cn("container", styles.header__container)}>
-				<Brand href="/" slogan="FOR HOMEOWNERS" />
+				<Brand href="https://www.homebuddy.com/" slogan="FOR HOMEOWNERS" />
 				<nav className={styles.header__nav}>
 					<ul className={styles["header__nav-list"]}>
 						<li className={styles["header__nav-item"]}>
