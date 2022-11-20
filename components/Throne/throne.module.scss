@@ -187,7 +187,7 @@
 
 		font-size: $-fs--xxs;
 		line-height: $-lh--xxs;
-		font-weight: 500;
+		font-weight: 400;
 
 		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
 			// Smooth font-size change according to layout
@@ -209,6 +209,7 @@
 
 		@media (min-width: #{conf.$m}) {
 			grid-area: throne__text;
+			font-weight: 500;
 		}
 
 		@media (min-width: conf.$xl) {
