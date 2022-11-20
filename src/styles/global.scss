@@ -1,4 +1,7 @@
+@use "sass:math";
+@use "sass:color";
 @use "./conf";
+@use "./mix";
 @import "~normalize.css/normalize.css";
 
 *,
@@ -60,4 +63,44 @@ body {
 	max-width: conf.$xl;
 	padding: 0 conf.$global-padding;
 	margin: 0 auto;
+}
+
+.callout {
+	$-bgc: conf.$selago;
+
+	@include mix.isomorphic-color-contrast(
+		conf.$body-bg,
+		$-bgc,
+		color.invert($-bgc, 100%),
+		background-color
+	);
+
+	@include mix.isomorphic-color-contrast($-bgc, conf.$white, conf.$black);
+
+	@include mix.isomorphic-color-contrast(
+		conf.$body-bg,
+		conf.$west-side,
+		color.invert(conf.$west-side, 100%),
+		border-color
+	);
+
+	display: flex;
+	align-items: flex-start;
+	border: 1px solid conf.$west-side;
+	padding: conf.$global-padding * math.div(8, 16);
+	gap: conf.$grid-gutter-width * math.div(10, 32);
+	font-size: 1rem;
+	font-weight: 500;
+	border-radius: 0.5em;
+	background-color: $-bgc;
+
+	&__media {
+		line-height: 1;
+		flex-shrink: 0;
+	}
+
+	&__image {
+		display: block;
+		max-width: 100%;
+	}
 }
