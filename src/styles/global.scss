@@ -11,6 +11,9 @@
 }
 
 :root {
+	--animation-timing-function: ease-in-out;
+	--animation-duration: 0.15s;
+
 	font-size: conf.$font-size-root;
 	min-width: conf.$xxxs; // If less then horizontal scroll
 
@@ -25,6 +28,7 @@
 
 :any-link {
 	text-decoration: none;
+	color: conf.$black;
 
 	&:hover,
 	&:active {
@@ -103,4 +107,98 @@ body {
 		display: block;
 		max-width: 100%;
 	}
+}
+
+.btn {
+	color: conf.$white;
+	background-color: conf.$west-side;
+	border-radius: 0.25rem;
+	border: 1px solid conf.$west-side;
+	font-weight: 600;
+	font-size: 1rem;
+	line-height: inherit;
+	padding: calc(1em - 1px) calc(1.5em - 1px);
+	min-height: 56px;
+
+	&:hover,
+	&:focus {
+		border-color: conf.$clementine;
+		background-color: conf.$clementine;
+	}
+
+	&:active {
+		border-color: conf.$bamboo;
+		background-color: conf.$bamboo;
+	}
+
+	&[disabled] {
+		border-color: conf.$chardonnay;
+		background-color: conf.$chardonnay;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition: background-color var(--animation-duration)
+			var(--animation-timing-function);
+	}
+}
+
+.formControl {
+	&[type="text"],
+	&[type="color"],
+	&[type="date"],
+	&[type="datetime"],
+	&[type="datetime-local"],
+	&[type="email"],
+	&[type="file"],
+	&[type="month"],
+	&[type="number"],
+	&[type="password"],
+	&[type="tel"] {
+		color: conf.$mine-shaft;
+		background-color: conf.$selago;
+		padding: math.div(10, 14) + 0em math.div(16, 14) + 0em;
+		border: 1px solid conf.$selago;
+		border-radius: 0.25rem;
+		font-size: math.div(14, 16) + 0rem;
+		line-height: math.div(17, 14);
+		min-height: 56px;
+		outline: 0;
+		font-weight: 500;
+
+		&::placeholder {
+			color: #646464;
+		}
+
+		&:hover {
+			color: conf.$royal-blue;
+			border-color: conf.$cornflower-blue;
+		}
+
+		&:focus {
+			border-color: conf.$royal-blue;
+		}
+
+		&.formControl--error {
+			border-color: conf.$guardsman-red;
+		}
+
+		&[disabled] {
+			color: conf.$dove-gray;
+			border-color: conf.$selago;
+			background-color: conf.$selago;
+		}
+
+		@media (prefers-reduced-motion: no-preference) {
+			transition-property: border-color, color;
+			transition-duration: var(--animation-duration);
+			transition-timing-function: var(--animation-timing-function);
+		}
+	}
+}
+
+.formHelper {
+	font-weight: 500;
+	font-size: math.div(14, 16) + 0rem;
+	color: conf.$dove-gray;
+	line-height: math.div(20, 14);
 }

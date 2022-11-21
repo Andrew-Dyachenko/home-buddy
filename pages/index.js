@@ -5,7 +5,11 @@ import Throne from "../components/Throne/Throne";
 import Features from "../components/Features/Features";
 import Main from "../components/Main";
 import Image from "next/image";
+import Reference from "../components/Reference";
+import ZIP from "../components/Forms/ZIP";
 import Footer from "../components/Footer";
+
+import referenceStyles from "../components/Reference/reference.module.scss";
 
 export default function Index() {
 	return (
@@ -29,6 +33,9 @@ export default function Index() {
 					</div>
 					You will be surprised how affordable gutter guards are!
 				</div>
+				<Reference>
+					<ZIP modificator={referenceStyles.reference__zip} />
+				</Reference>
 			</Main>
 			<Footer />
 		</Fragment>

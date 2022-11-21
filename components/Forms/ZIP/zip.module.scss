@@ -1,0 +1,27 @@
+@use "sass:math";
+@use "../../../src/styles/conf";
+
+.zip {
+	display: flex;
+	flex-direction: column;
+	row-gap: math.div(conf.$grid-gutter-width, 2);
+
+	&__formGroup {
+		display: flex;
+		flex-direction: column;
+		row-gap: math.div(conf.$grid-gutter-width, 4);
+	}
+
+	&__formHelper {
+		&:empty {
+			display: none;
+		}
+	}
+
+	&__title {
+		text-align: center;
+		font-weight: 500;
+		font-size: math.div(23, 16) + 0rem;
+		margin: 0;
+	}
+}

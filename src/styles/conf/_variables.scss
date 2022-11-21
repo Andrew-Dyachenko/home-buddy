@@ -18,10 +18,19 @@ $global-line-height: $line-height-s;
 // Colors
 $white: #fff;
 $black: #000;
-$royal-blue: #2f54eb;
-$west-side: #fa8c16;
-$lima: #52c41a;
-$selago: #f5f6fe;
+$royal-blue: #2f54eb; // .header, .footer background-color
+
+$west-side: #fa8c16; // .btn background-color / .callout border-color / .formControl border-color
+$clementine: #f16e00; // .btn :hover,:focus background-color
+$bamboo: #e16803; // .btn :active background-color
+$chardonnay: #fcc58a; // .btn disactive background-color
+$mine-shaft: #222; // .formControl (input) color
+$selago: #f5f6fe; // .formControl (input) background-color / .callout background
+$cornflower-blue: #6d87f1; // .formControl (input) border-color :hover
+$guardsman-red: #bb0000; // .formControl (input) border-color :error
+$dove-gray: #646464; // .formControl (input) border-color :disabled
+
+$lima: #52c41a; // .throne__title-mark background-color
 
 $body-color: $black;
 $body-bg: $white;

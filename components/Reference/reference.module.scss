@@ -1,0 +1,173 @@
+@use "sass:math";
+@use "sass:color";
+@use "../../src/styles/conf";
+@use "../../src/styles/func";
+@use "../../src/styles/mix";
+
+.reference {
+	$-reference: &;
+	$-bgc: conf.$royal-blue;
+
+	@include mix.isomorphic-color-contrast(
+		$-bgc,
+		conf.$body-color,
+		color.invert(conf.$body-color, 100%)
+	);
+
+	max-width: conf.$xl - conf.$global-padding * 2;
+	border-radius: 24px;
+	background-color: $-bgc;
+	padding: conf.$global-padding * 1.5 conf.$global-padding * 1.5
+		conf.$global-padding * 3;
+
+	> *:not(#{$-reference}__figure) {
+		&:not(:first-child) {
+			margin-top: conf.$global-margin;
+		}
+
+		&:not(:last-child) {
+			margin-bottom: conf.$global-margin;
+		}
+
+		@media (min-width: conf.$xl) {
+			position: relative;
+		}
+	}
+
+	@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+		padding: func.fluid(
+				conf.$global-padding * 1.5,
+				conf.$global-padding * 3,
+				conf.$xxs,
+				conf.$xl
+			)
+			func.fluid(
+				conf.$global-padding * 1.5,
+				conf.$global-padding * 6,
+				conf.$xxs,
+				conf.$xl
+			)
+			func.fluid(
+				conf.$global-padding * 3,
+				conf.$global-padding * 6,
+				conf.$xxs,
+				conf.$xl
+			);
+	}
+
+	@media (min-width: conf.$xl) {
+		position: relative;
+		padding: conf.$global-padding * 3 conf.$global-padding * 6
+			conf.$global-padding * 6;
+	}
+
+	&__figure {
+		margin: 0;
+		position: absolute;
+		top: -10px;
+		left: 0;
+		width: 1170px;
+		aspect-ratio: 1171 / 584;
+		mix-blend-mode: overlay;
+
+		@media (max-width: #{conf.$xl - 1}) {
+			display: none;
+		}
+	}
+
+	&__callout {
+		border-width: 0;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 494px;
+
+		@media (max-width: #{conf.$s - 1}) {
+			display: none;
+		}
+	}
+
+	&__title {
+		font-weight: 700;
+		font-size: math.div(25, 16) + 0rem;
+		line-height: math.div(36, 25);
+		margin: 0;
+
+		@media (min-width: conf.$m) {
+			text-align: center;
+		}
+	}
+
+	&__hug {
+		$-bgc--hug: func.color-contrast(
+			$-bgc,
+			conf.$white,
+			color.invert($-bgc, 100%)
+		);
+
+		@include mix.isomorphic-color-contrast(
+			$-bgc--hug,
+			conf.$body-color,
+			conf.$white
+		);
+
+		background-color: $-bgc--hug;
+		border-radius: 1rem;
+		padding: conf.$global-padding * 1.5 conf.$global-padding;
+
+		&:not(:first-child):not(#{$-reference}__figure) {
+			@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+				margin-top: func.fluid(
+					conf.$global-margin,
+					conf.$global-margin * 2,
+					conf.$xxs,
+					conf.$xl
+				);
+			}
+
+			@media (min-width: conf.$xl) {
+				margin-top: conf.$global-margin * 2;
+			}
+		}
+
+		&:not(:last-child):not(#{$-reference}__figure) {
+			@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+				margin-bottom: func.fluid(
+					conf.$global-margin,
+					conf.$global-margin * 2,
+					conf.$xxs,
+					conf.$xl
+				);
+			}
+
+			@media (min-width: conf.$xl) {
+				margin-bottom: conf.$global-margin * 2;
+			}
+		}
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
+			padding: func.fluid(
+					conf.$global-padding * 1.5,
+					conf.$global-padding * 3,
+					conf.$xxs,
+					conf.$xl
+				)
+				func.fluid(
+					conf.$global-padding,
+					conf.$global-padding * 2,
+					conf.$xxs,
+					conf.$xl
+				);
+		}
+
+		@media (min-width: conf.$xl) {
+			padding: conf.$global-padding * 3 conf.$global-padding * 2;
+		}
+	}
+
+	&__zip {
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 320px;
+	}
+}
