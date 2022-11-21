@@ -20,8 +20,8 @@
 
 	// https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-contrast()
 	@supports (
-		color: #{"color-contrast(#{$background} vs #{$color-contrast-dark}, #{$color-contrast-light})"}
+		#{$property}: #{"color-contrast(#{$background} vs #{$color-contrast-dark}, #{$color-contrast-light})"}
 	) {
-		color: #{"color-contrast(#{$background} vs #{$color-contrast-dark}, #{$color-contrast-light})"};
+		#{$property}: #{"color-contrast(#{$background} vs #{$color-contrast-dark}, #{$color-contrast-light})"};
 	}
 }
