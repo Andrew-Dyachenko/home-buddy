@@ -7,19 +7,25 @@
 
 	&__container {
 		> *:not(script) {
-			&:not(:first-of-type) {
+			&:not(:first-child) {
 				margin-top: conf.$global-margin * 1.5;
 			}
 
-			&:not(:last-of-type) {
+			&:not(:last-child) {
 				margin-bottom: conf.$global-margin * 1.5;
 			}
 
-			&[class$="callout--affordable"] {
+			&[class^="features"] {
 				&:not(:first-of-type) {
-					margin-top: conf.$global-margin * 3;
+					margin-top: conf.$global-margin * 3 0;
 				}
 
+				&:not(:last-of-type) {
+					margin-bottom: conf.$global-margin * 3;
+				}
+			}
+
+			&[class$="callout--affordable"] {
 				@media (min-width: conf.$s) {
 					display: none;
 				}
