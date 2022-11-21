@@ -1,0 +1,17 @@
+@use "../conf";
+@import "~/node_modules/bootstrap/scss/functions";
+@import "~/node_modules/bootstrap/scss/variables";
+
+@function _color-contrast(
+	$background,
+	$color-contrast-dark: conf.$black,
+	$color-contrast-light: conf.$white,
+	$min-contrast-ratio: conf.$min-contrast-ratio
+) {
+	@return color-contrast(
+		$background,
+		$color-contrast-dark,
+		$color-contrast-light,
+		$min-contrast-ratio
+	);
+}
