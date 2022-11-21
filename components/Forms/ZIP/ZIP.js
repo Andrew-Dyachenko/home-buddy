@@ -18,7 +18,7 @@ export default function ZIP({ modificator = "" }) {
 					id="form-control--zip"
 					minLength={4}
 					maxLength={6}
-					// pattern="/^(?=.{2,6}$)(\d)/igm"
+					pattern="\d{4,6}"
 					required={true}
 					placeholder="Enter ZIP Code"
 					className={cn("formControl", styles.zip__formControl)}
