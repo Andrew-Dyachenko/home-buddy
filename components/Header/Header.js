@@ -10,7 +10,10 @@ export default function Header() {
 				<nav className={styles.header__nav}>
 					<ul className={styles["header__nav-list"]}>
 						<li className={styles["header__nav-item"]}>
-							<a href="#form" className={styles["header__nav-link"]}>
+							<a
+								href="#form-control--zip"
+								className={styles["header__nav-link"]}
+							>
 								Link to form
 							</a>
 						</li>
