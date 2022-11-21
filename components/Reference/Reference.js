@@ -13,6 +13,7 @@ export default function Reference({
 					src="/img/american-dream-house.png"
 					alt="American dream house"
 					fill={true}
+					objectFit="cover"
 				/>
 				<figcaption className="visually-hidden">
 					Classic private house with a garage like from the American dream
