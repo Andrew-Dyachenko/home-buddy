@@ -7,7 +7,7 @@ export default function Reference({
 }) {
 	return (
 		<section className={styles.reference}>
-			<figure className={styles.reference__figure} area-hidden="true">
+			<figure className={styles.reference__figure}>
 				<Image
 					className={styles.reference__image}
 					src="/img/american-dream-house.png"
