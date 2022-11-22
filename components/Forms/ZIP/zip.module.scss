@@ -9,7 +9,7 @@
 	&__formGroup {
 		display: flex;
 		flex-direction: column;
-		row-gap: math.div(conf.$grid-gutter-width, 4);
+		row-gap: calc(#{math.div(conf.$grid-gutter-width, 4)} - 3px);
 	}
 
 	&__formHelper {
