@@ -184,8 +184,8 @@ body {
 
 		&[disabled] {
 			color: conf.$dove-gray;
-			border-color: conf.$selago;
-			background-color: conf.$selago;
+			border-color: conf.$selago-2;
+			background-color: conf.$selago-2;
 		}
 
 		@media (prefers-reduced-motion: no-preference) {
