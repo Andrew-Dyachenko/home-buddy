@@ -1,6 +1,13 @@
 import styles from "./throne.module.scss";
 import cn from "classnames";
 import Image from "next/image";
+import { Open_Sans } from "@next/font/google";
+
+const open_sans = Open_Sans({
+	weight: ["700"],
+	style: ["normal"],
+	subsets: ["latin"],
+});
 
 export default function Throne() {
 	return (
@@ -46,7 +53,14 @@ export default function Throne() {
 							target="_blank"
 							className={styles.throne__label}
 						>
-							<h6 className={styles["throne__label-title"]}>As seen on</h6>
+							<h6
+								className={cn(
+									open_sans.className,
+									styles["throne__label-title"],
+								)}
+							>
+								As seen on
+							</h6>
 							<figure className={styles["throne__label-figure"]}>
 								<Image
 									className={styles["throne__label-icon"]}

@@ -43,17 +43,18 @@
 		]
 	},
 	"dependencies": {
+		"@next/font": "^13.0.4",
 		"@sass-fairy/math": "^1.0.3",
 		"bootstrap": "^5.2.2",
 		"classnames": "^2.3.2",
-		"eslint": "8.27.0",
-		"eslint-config-next": "13.0.3",
-		"next": "13.0.3",
+		"next": "^13.0.4",
 		"normalize.css": "^8.0.1",
 		"react": "18.2.0",
 		"react-dom": "18.2.0"
 	},
 	"devDependencies": {
+		"eslint": "^8.28.0",
+		"eslint-config-next": "^13.0.4",
 		"rome": "^10.0.1",
 		"sass": "^1.56.1"
 	}

@@ -57,7 +57,7 @@ class MyDocument extends Document {
 						color="#2f54eb"
 					/>
 					<link rel="shortcut icon" href="./favicon/favicon.ico" />
-					<link rel="preconnect" href="https://fonts.googleapis.com" />
+					{/* <link rel="preconnect" href="https://fonts.googleapis.com" />
 					<link
 						rel="preconnect"
 						href="https://fonts.gstatic.com"
@@ -70,7 +70,7 @@ class MyDocument extends Document {
 					<link
 						href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap"
 						rel="stylesheet"
-					/>
+					/> */}
 				</Head>
 				<body>
 					<Main />
