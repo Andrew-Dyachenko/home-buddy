@@ -36,8 +36,8 @@ export default function Throne() {
 								className={styles.throne__image}
 								src='/img/facade.png'
 								alt="Facade"
-								width={581}
-								height={326}
+								width={281}
+								height={158}
 								sizes="(max-width: 375px) 343px, 581px"
 								priority={true}
 							/>
