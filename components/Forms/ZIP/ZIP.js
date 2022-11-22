@@ -1,9 +1,13 @@
 import styles from "./zip.module.scss";
 import cn from "classnames";
 
-export default function ZIP({ modificator = "" }) {
+export default function ZIP({
+	modificator = "",
+	onSubmit = (f) => f,
+	completed = false,
+}) {
 	return (
-		<form className={cn(styles.zip, modificator)}>
+		<form className={cn(styles.zip, modificator)} onSubmit={onSubmit}>
 			<h3 className={styles.zip__title}>What is your ZIP Code?</h3>
 			<div className={styles.zip__formGroup}>
 				<label
@@ -22,13 +26,18 @@ export default function ZIP({ modificator = "" }) {
 					required={true}
 					placeholder="Enter ZIP Code"
 					className={cn("formControl", styles.zip__formControl)}
+					disabled={completed}
 				/>
 				<div className={cn("formHelper", styles.zip__formHelper)}>
 					Free, no-obligation estimates.
 				</div>
 			</div>
-			<button type="submit" className={cn("btn", styles.zip__submit)}>
-				Get estimate
+			<button
+				type="submit"
+				className={cn("btn", styles.zip__submit)}
+				disabled={completed}
+			>
+				{completed ? "Estimate completed!" : "Get estimate"}
 			</button>
 		</form>
 	);

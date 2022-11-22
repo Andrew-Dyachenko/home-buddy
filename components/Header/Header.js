@@ -2,9 +2,9 @@ import styles from "./header.module.scss";
 import Brand from "../Brand";
 import cn from "classnames";
 
-export default function Header() {
+export default function Header({ inert = false }) {
 	return (
-		<header className={styles.header}>
+		<header className={styles.header} inert={inert ? "inert" : null}>
 			<div className={cn("container", styles.header__container)}>
 				<Brand href="https://www.homebuddy.com/" slogan="FOR HOMEOWNERS" />
 				<nav className={styles.header__nav}>

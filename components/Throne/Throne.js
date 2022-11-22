@@ -9,9 +9,9 @@ const open_sans = Open_Sans({
 	subsets: ["latin"],
 });
 
-export default function Throne() {
+export default function Throne({ inert = false }) {
 	return (
-		<section className={styles.throne}>
+		<section className={styles.throne} inert={inert ? "inert" : null}>
 			<div className={cn("container", styles.throne__container)}>
 				<div className={styles.throne__filler}>
 					<h1 className={styles.throne__title}>
