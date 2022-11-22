@@ -5,6 +5,7 @@
 .brand {
 	display: inline-flex;
 	flex-direction: column;
+
 	&:any-link {
 		text-decoration: none;
 		color: inherit;
