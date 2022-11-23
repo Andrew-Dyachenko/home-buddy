@@ -12,10 +12,13 @@ import Dialog from "../components/Dialog";
 import YesNo from "../components/Forms/YesNo";
 import User from "../components/Forms/User";
 
+import cn from "classnames";
+
 import referenceStyles from "../components/Reference/reference.module.scss";
+import dialogStyles from "../components/Dialog/dialog.module.scss";
 
 export default function Index() {
-	const [isDialogOpened, showDialog] = useState(true);
+	const [isDialogOpened, showDialog] = useState(false);
 	const onZIPSubmit = (e) => {
 		e.preventDefault();
 		showDialog(true);
@@ -39,6 +42,10 @@ export default function Index() {
 	};
 	const [estimateCompleted, setEstimateCompleted] = useState(false);
 	const [homeownerOrAuthrized, setHomeownerOrAuthrized] = useState(null);
+	const dialogTitles = [
+		"Are you homeowner or authrized to make property changes?",
+		"Who should I prepare this estimate for?",
+	];
 
 	return (
 		<Fragment>
@@ -71,16 +78,26 @@ export default function Index() {
 			</Main>
 			<Footer inert={isDialogOpened} areaHidden={isDialogOpened} />
 			<Dialog
-				title="Are you homeowner or authrized to make property changes?"
+				title={dialogTitles[dialogStep - 1]}
 				isOpen={isDialogOpened}
 				showDialog={showDialog}
 				childrenAsSteps={true}
 				step={dialogStep}
+				homeownerOrAuthrized={homeownerOrAuthrized}
 			>
-				<YesNo onSubmit={onSubmitNext} />
+				<YesNo
+					onSubmit={onSubmitNext}
+					modificator={cn(
+						dialogStyles.dialog__form,
+						dialogStyles["dialog__form--yesno"],
+					)}
+				/>
 				<User
 					onSubmit={onSubmitNext}
-					homeownerOrAuthrized={homeownerOrAuthrized}
+					modificator={cn(
+						dialogStyles.dialog__form,
+						dialogStyles["dialog__form--user"],
+					)}
 				/>
 			</Dialog>
 		</Fragment>

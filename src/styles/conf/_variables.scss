@@ -30,10 +30,14 @@ $selago-2: #f9fafe; // .formControl (input) background-color / border-color on :
 $cornflower-blue: #6d87f1; // .formControl (input) border-color :hover
 $guardsman-red: #bb0000; // .formControl (input) border-color :error
 $dove-gray: #646464; // .formControl (input) border-color :disabled
+$boulder: #7a7a7a; //. dialog__dismiss-icon color
+
+$baltic-sea: #232224; // dark theme body-bg color
 
 $lima: #52c41a; // .throne__title-mark background-color
 
 $body-color: $black;
+// $body-bg: $baltic-sea;
 $body-bg: $white;
 
 // // The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.

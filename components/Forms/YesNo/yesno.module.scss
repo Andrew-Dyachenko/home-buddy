@@ -1,2 +1,177 @@
-.yesno {
+@use "sass:color";
+@use "@sass-fairy/math/math";
+@use "../../../src/styles/conf";
+@use "../../../src/styles/func";
+@use "../../../src/styles/mix";
+
+.form {
+	$-form: &;
+	$-bgc: conf.$body-bg;
+
+	> * {
+		@media (max-width: conf.$xxs) {
+			&:not(:first-child) {
+				margin-top: math.div(conf.$global-margin, 2);
+			}
+
+			&:not(:last-child) {
+				margin-bottom: math.div(conf.$global-margin, 2);
+			}
+		}
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$s - 1}) {
+			&:not(:first-child) {
+				margin-top: func.fluid(
+					math.div(conf.$global-margin, 2),
+					conf.$global-margin,
+					conf.$xxs,
+					conf.$s
+				);
+			}
+
+			&:not(:last-child) {
+				margin-bottom: func.fluid(
+					math.div(conf.$global-margin, 2),
+					conf.$global-margin,
+					conf.$xxs,
+					conf.$s
+				);
+			}
+		}
+	}
+
+	@media (min-width: conf.$s) {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		column-gap: math.div(conf.$grid-gutter-width, 2);
+		row-gap: conf.$grid-gutter-width * 0.75;
+	}
+
+	&__group {
+		@media (min-width: conf.$s) {
+			flex-grow: 1;
+			width: calc(
+				50% - #{math.div(math.div(conf.$grid-gutter-width, 2), 2)}
+			);
+		}
+	}
+
+	&__label {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: math.div(conf.$grid-gutter-width, 2);
+		border-style: solid;
+		border-width: 2px;
+		border-radius: 0.5rem;
+		font-size: math.div(14, 16) + rem;
+		line-height: math.div(20, 14);
+		padding: conf.$global-padding conf.$global-padding * 1.5;
+
+		@if (math.unitless(color.blackness($-bgc)) > 50) {
+			border-color: color.change(
+				conf.$selago,
+				$blackness: 90%,
+				$whiteness: 10%
+			);
+		} @else {
+			border-color: conf.$selago;
+		}
+
+		&-icon {
+			@if (math.unitless(color.blackness($-bgc)) > 50) {
+				color: color.change(
+					conf.$west-side,
+					$blackness: 10%,
+					$whiteness: 90%
+				);
+			} @else {
+				color: conf.$west-side;
+			}
+		}
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$s - 1}) {
+			border-radius: func.fluid(
+				math.unitless(0.5rem) * conf.$font-size-root,
+				math.unitless(1rem) * conf.$font-size-root,
+				conf.$xxs,
+				conf.$s
+			);
+		}
+
+		@media (min-width: conf.$s) {
+			border-radius: 1rem;
+			display: flex;
+			flex-direction: column;
+		}
+
+		&:hover,
+		&:focus {
+			@if (math.unitless(color.blackness($-bgc)) > 50) {
+				border-color: color.change(
+					conf.$west-side,
+					$blackness: 10%,
+					$whiteness: 90%
+				);
+			} @else {
+				border-color: conf.$west-side;
+			}
+		}
+	}
+
+	&__control {
+		&:checked +,
+		&:focus + {
+			#{$-form} {
+				&__label {
+					@if (math.unitless(color.blackness($-bgc)) > 50) {
+						border-color: color.change(
+							conf.$west-side,
+							$blackness: 10%,
+							$whiteness: 90%
+						);
+					} @else {
+						border-color: conf.$west-side;
+					}
+				}
+			}
+		}
+	}
+
+	&__submit {
+		display: block;
+		margin: 0 auto;
+
+		@media (max-width: conf.$xxs) {
+			width: 100%;
+			&:not(:first-child) {
+				margin-top: conf.$global-margin;
+			}
+
+			&:not(:last-child) {
+				margin-bottom: conf.$global-margin;
+			}
+		}
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$s - 1}) {
+			&:not(:first-child) {
+				margin-top: func.fluid(
+					conf.$global-margin,
+					conf.$global-margin * 1.5,
+					conf.$xxs,
+					conf.$s
+				);
+			}
+
+			&:not(:last-child) {
+				margin-bottom: func.fluid(
+					conf.$global-margin,
+					conf.$global-margin * 1.5,
+					conf.$xxs,
+					conf.$s
+				);
+			}
+		}
+	}
 }

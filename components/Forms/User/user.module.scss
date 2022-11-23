@@ -1,0 +1,136 @@
+// @use "sass:color";
+@use "sass:math";
+// @use "@sass-fairy/math/math";
+@use "../../../src/styles/conf";
+@use "../../../src/styles/func";
+// @use "../../../src/styles/mix";
+
+.form {
+	$-form: &;
+
+	> * {
+		@media (max-width: conf.$xxs) {
+			&:not(:first-child) {
+				margin-top: math.div(conf.$global-margin, 2);
+			}
+
+			&:not(:last-child) {
+				margin-bottom: math.div(conf.$global-margin, 2);
+			}
+		}
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$s - 1}) {
+			&:not(:first-child) {
+				margin-top: func.fluid(
+					math.div(conf.$global-margin, 2),
+					conf.$global-margin,
+					conf.$xxs,
+					conf.$s
+				);
+			}
+
+			&:not(:last-child) {
+				margin-bottom: func.fluid(
+					math.div(conf.$global-margin, 2),
+					conf.$global-margin,
+					conf.$xxs,
+					conf.$s
+				);
+			}
+		}
+
+		@media (min-width: conf.$s) {
+			&:not(:first-child) {
+				margin-top: conf.$global-margin;
+			}
+
+			&:not(:last-child) {
+				margin-bottom: conf.$global-margin;
+			}
+		}
+	}
+
+	&__control {
+		width: 100%;
+	}
+
+	&__submit {
+		display: block;
+		margin: 0 auto;
+
+		@media (max-width: conf.$xxs) {
+			width: 100%;
+			&:not(:first-child) {
+				margin-top: conf.$global-margin;
+			}
+
+			&:not(:last-child) {
+				margin-bottom: conf.$global-margin;
+			}
+		}
+
+		@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$s - 1}) {
+			&:not(:first-child) {
+				margin-top: func.fluid(
+					conf.$global-margin,
+					conf.$global-margin * 1.5,
+					conf.$xxs,
+					conf.$s
+				);
+			}
+
+			&:not(:last-child) {
+				margin-bottom: func.fluid(
+					conf.$global-margin,
+					conf.$global-margin * 1.5,
+					conf.$xxs,
+					conf.$s
+				);
+			}
+
+			+ #{$-form} {
+				&__secure {
+					margin-top: func.fluid(
+						0,
+						math.div(conf.$global-margin, -2),
+						conf.$xxs,
+						conf.$s
+					);
+				}
+			}
+		}
+
+		@media (min-width: conf.$s) {
+			&:not(:first-child) {
+				margin-top: conf.$global-margin * 1.5;
+			}
+
+			&:not(:last-child) {
+				margin-bottom: conf.$global-margin * 1.5;
+			}
+
+			+ #{$-form} {
+				&__secure {
+					margin-top: math.div(conf.$global-margin, -2);
+				}
+			}
+		}
+	}
+
+	&__secure {
+		margin: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		// flex-wrap: wrap;
+		font-weight: 500;
+		font-size: math.div(14, 16) + 0rem;
+		line-height: math.div(23, 14);
+		gap: math.div(conf.$grid-gutter-width, 4);
+
+		&-icon {
+			flex-shrink: 0;
+		}
+	}
+}
