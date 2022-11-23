@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, Children } from "react";
+import React, { useRef, useEffect, useCallback, Children } from "react";
 import styles from "./dialog.module.scss";
 
 export default function Dialog({
@@ -9,7 +9,7 @@ export default function Dialog({
 	childrenAsSteps = false,
 	step = 1,
 }) {
-	// const [step, nextStep] = useState(1);
+	const dialog = useRef(null);
 	const onESC = useCallback(
 		(event) => {
 			// console.log("event: ", event);
@@ -30,20 +30,32 @@ export default function Dialog({
 		[showDialog],
 	);
 
+	const outsideClick = useCallback(
+		(event) => {
+			if (!dialog.current.contains(event.target)) {
+				showDialog(false);
+			}
+		},
+		[showDialog],
+	);
+
 	useEffect(() => {
 		if (!isOpen) {
 			return;
 		}
 
 		document.addEventListener("keydown", onESC);
+		document.addEventListener("click", outsideClick);
 
 		return () => {
 			document.removeEventListener("keydown", onESC);
+			document.removeEventListener("click", outsideClick);
 		};
 	});
 
 	return (
 		<dialog
+			ref={dialog}
 			open={isOpen}
 			className={styles.dialog}
 			aria-labelledby={title.replace(/\s/gim, "")}
