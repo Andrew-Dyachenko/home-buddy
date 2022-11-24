@@ -72,7 +72,6 @@ export default function Dialog({
 				<div className={styles.dialog__header}>
 					<div
 						className={cn(
-							"container",
 							styles.dialog__container,
 							styles["dialog__container--header"],
 						)}
