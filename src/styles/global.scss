@@ -25,6 +25,8 @@
 	@media (prefers-reduced-motion: no-preference) {
 		scroll-behavior: smooth;
 	}
+
+	color-scheme: light dark;
 }
 
 :any-link {
@@ -42,6 +44,11 @@ body {
 	line-height: conf.$global-line-height;
 	background-color: conf.$body-bg;
 	color: conf.$body-color;
+
+	@media (prefers-color-scheme: dark) {
+		background-color: conf.$body-bg--dark;
+		color: conf.$white;
+	}
 }
 
 #__next {

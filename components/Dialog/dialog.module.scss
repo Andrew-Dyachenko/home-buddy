@@ -1,17 +1,12 @@
 @use "sass:color";
 @use "@sass-fairy/math/math";
 @use "../../src/styles/conf";
+@use "../../src/styles/conf/fibonacci";
 @use "../../src/styles/func";
 @use "../../src/styles/mix";
 
 .dialog {
 	$-bgc: conf.$body-bg;
-	@include mix.isomorphic-color-contrast(
-		$-bgc,
-		conf.$body-color,
-		color.invert(conf.$body-color, 100%),
-		color
-	);
 
 	position: fixed;
 	border: 0;
@@ -23,6 +18,10 @@
 	height: 100%;
 	padding: 0;
 	background-color: $-bgc;
+
+	@media (prefers-color-scheme: dark) {
+		background-color: conf.$body-bg--dark;
+	}
 
 	&__hug {
 		display: flex;
@@ -192,11 +191,23 @@
 		@if (math.unitless(color.blackness($-bgc)) > 50) {
 			background-color: color.change(
 				conf.$selago,
-				$blackness: 90%,
-				$whiteness: 10%
+				$blackness: fibonacci.$asymp-xxxl-percentage,
+				$whiteness: fibonacci.$asymp-xxl-percentage
 			);
 		} @else {
 			background-color: conf.$selago;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			@if (math.unitless(color.blackness(conf.$body-bg--dark)) > 50) {
+				background-color: color.change(
+					conf.$selago,
+					$blackness: fibonacci.$asymp-xxxl-percentage,
+					$whiteness: fibonacci.$asymp-xxl-percentage
+				);
+			} @else {
+				background-color: conf.$selago;
+			}
 		}
 
 		&-bar {

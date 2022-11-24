@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "@sass-fairy/math/math";
 @use "../../src/styles/conf";
 @use "../../src/styles/func";
@@ -15,7 +16,6 @@
 	top: 0;
 	right: 0;
 	left: 0;
-	// background-color: $-bgc;
 
 	&__container {
 		$padding-y--xxs: math.div(conf.$global-padding, 2);

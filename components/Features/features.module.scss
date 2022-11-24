@@ -7,6 +7,7 @@
 .features {
 	display: flex;
 	flex-direction: column;
+
 	&__container {
 		display: flex;
 		flex-direction: column;
@@ -87,11 +88,11 @@
 	}
 
 	&__text {
-		@include mix.isomorphic-color-contrast(
-			conf.$body-bg,
-			conf.$body-color,
-			conf.$white
-		);
+		// @include mix.isomorphic-color-contrast(
+		// 	conf.$body-bg,
+		// 	conf.$body-color,
+		// 	conf.$white
+		// );
 
 		font-weight: 500;
 		letter-spacing: math.div(0.2, 16) + 0em;

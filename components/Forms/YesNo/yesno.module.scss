@@ -1,6 +1,7 @@
 @use "sass:color";
 @use "@sass-fairy/math/math";
 @use "../../../src/styles/conf";
+@use "../../../src/styles/conf/fibonacci";
 @use "../../../src/styles/func";
 @use "../../../src/styles/mix";
 
@@ -79,12 +80,24 @@
 			border-color: conf.$selago;
 		}
 
+		@media (prefers-color-scheme: dark) {
+			@if (math.unitless(color.blackness(conf.$body-bg--dark)) > 50) {
+				border-color: color.change(
+					conf.$selago,
+					$blackness: fibonacci.$asymp-xxxl-percentage,
+					$whiteness: fibonacci.$asymp-xxl-percentage
+				);
+			} @else {
+				border-color: conf.$selago;
+			}
+		}
+
 		&-icon {
 			@if (math.unitless(color.blackness($-bgc)) > 50) {
 				color: color.change(
 					conf.$west-side,
-					$blackness: 10%,
-					$whiteness: 90%
+					$blackness: fibonacci.$asymp-xxxl-percentage,
+					$whiteness: fibonacci.$asymp-xxl-percentage
 				);
 			} @else {
 				color: conf.$west-side;

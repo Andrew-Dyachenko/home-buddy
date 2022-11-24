@@ -1,5 +1,7 @@
+@use "sass:color";
 @use "@sass-fairy/math/math";
 @use "../../src/styles/conf";
+@use "../../src/styles/conf/fibonacci";
 @use "../../src/styles/func";
 @use "../../src/styles/mix";
 
@@ -16,6 +18,14 @@
 	background-color: $-bgc;
 	padding-top: conf.$global-padding * 1.5;
 	padding-bottom: conf.$global-padding * 3;
+
+	@media (prefers-color-scheme: dark) {
+		background-color: color.change(
+			color.mix($-bgc, conf.$body-bg--dark),
+			$lightness: fibonacci.$asymp-l-percentage +
+				fibonacci.$asymp-xl-percentage
+		);
+	}
 
 	@media (min-width: #{conf.$xxs + 1}) and (max-width: #{conf.$xl - 1}) {
 		padding-bottom: func.fluid(
