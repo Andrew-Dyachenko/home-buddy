@@ -52,9 +52,9 @@ export default function Index() {
 			<Head>
 				<title>Home</title>
 			</Head>
-			<Header inert={isDialogOpened} areaHidden={isDialogOpened} />
-			<Throne inert={isDialogOpened} areaHidden={isDialogOpened} />
-			<Main inert={isDialogOpened} areaHidden={isDialogOpened}>
+			<Header inert={isDialogOpened} />
+			<Throne inert={isDialogOpened} />
+			<Main inert={isDialogOpened}>
 				<Features />
 				<div className="callout callout--affordable">
 					<div className="callout__media">
@@ -76,7 +76,7 @@ export default function Index() {
 					/>
 				</Reference>
 			</Main>
-			<Footer inert={isDialogOpened} areaHidden={isDialogOpened} />
+			<Footer inert={isDialogOpened} />
 			<Dialog
 				title={dialogTitles[dialogStep - 1]}
 				isOpen={isDialogOpened}
