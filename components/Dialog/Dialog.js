@@ -65,7 +65,6 @@ export default function Dialog({
 			open={isOpen}
 			className={styles.dialog}
 			aria-labelledby={title.replace(/\s/gim, "")}
-			area-hidden={isOpen === false ? "true" : null}
 			tabIndex={-1}
 		>
 			<div className={styles.dialog__hug}>
