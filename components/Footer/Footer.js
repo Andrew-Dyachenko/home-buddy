@@ -2,7 +2,7 @@ import styles from "./footer.module.scss";
 import cn from "classnames";
 import Brand from "../../components/Brand";
 
-export default function Footer(inert = false) {
+export default function Footer({ inert = false }) {
 	return (
 		<footer className={styles.footer} inert={inert ? "inert" : null}>
 			<div className={cn("container", styles.footer__container)}>
