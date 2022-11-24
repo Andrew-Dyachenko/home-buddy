@@ -8,6 +8,12 @@
 .dialog {
 	$-bgc: conf.$body-bg;
 
+	@include mix.isomorphic-color-contrast(
+		$-bgc,
+		conf.$body-color,
+		color.invert(conf.$body-color, 100%)
+	);
+
 	position: fixed;
 	border: 0;
 	top: 0;
@@ -21,6 +27,12 @@
 
 	@media (prefers-color-scheme: dark) {
 		background-color: conf.$body-bg--dark;
+
+		@include mix.isomorphic-color-contrast(
+			conf.$body-bg--dark,
+			conf.$body-color,
+			color.invert(conf.$body-color, 100%)
+		);
 	}
 
 	&__hug {
