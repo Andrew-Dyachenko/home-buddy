@@ -217,6 +217,16 @@ body {
 			}
 
 			~ .formLabel {
+				@if (math.unitless(color.blackness($-bgc)) > 50) {
+					color: color.change(
+						conf.$royal-blue,
+						$blackness: 10%,
+						$whiteness: 90%
+					);
+				} @else {
+					color: conf.$royal-blue;
+				}
+
 				top: 17%;
 				font-size: math.div(10, 16) + 0rem;
 			}
@@ -224,6 +234,16 @@ body {
 
 		&:not(:placeholder-shown) {
 			~ .formLabel {
+				@if (math.unitless(color.blackness($-bgc)) > 50) {
+					color: color.change(
+						conf.$royal-blue,
+						$blackness: 10%,
+						$whiteness: 90%
+					);
+				} @else {
+					color: conf.$royal-blue;
+				}
+
 				top: 17%;
 				font-size: math.div(10, 16) + 0rem;
 			}
@@ -302,7 +322,7 @@ body {
 	transform: translateY(-50%);
 
 	@media (prefers-reduced-motion: no-preference) {
-		transition-property: font-size, top;
+		transition-property: font-size, top, color;
 		transition-duration: var(--animation-duration);
 		transition-timing-function: var(--animation-timing-function);
 	}
