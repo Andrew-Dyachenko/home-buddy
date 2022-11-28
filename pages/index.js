@@ -19,13 +19,20 @@ import dialogStyles from "../components/Dialog/dialog.module.scss";
 
 export default function Index() {
 	const [isDialogOpened, showDialog] = useState(false);
+	const [dialogStep, setDialogStep] = useState(1);
+	const [ZIPHasError, setZIPHasError] = useState(false);
+	const [UserHasError, setUserHasError] = useState(false);
+
 	const onZIPSubmit = (e) => {
+		const { target } = e;
+		setZIPHasError(!target.checkValidity());
 		e.preventDefault();
 		showDialog(true);
 	};
-	const [dialogStep, setDialogStep] = useState(1);
+
 	const onSubmitNext = (event) => {
 		event.preventDefault();
+		const { target } = event;
 		setDialogStep(dialogStep + 1);
 
 		if (dialogStep === 1) {
@@ -36,6 +43,7 @@ export default function Index() {
 		}
 
 		if (dialogStep >= 2) {
+			setUserHasError(!target.checkValidity());
 			setEstimateCompleted(true);
 			showDialog(false);
 		}
@@ -73,6 +81,7 @@ export default function Index() {
 						modificator={referenceStyles.reference__zip}
 						onSubmit={onZIPSubmit}
 						completed={estimateCompleted}
+						hasError={ZIPHasError}
 					/>
 				</Reference>
 			</Main>
@@ -98,6 +107,7 @@ export default function Index() {
 						dialogStyles.dialog__form,
 						dialogStyles["dialog__form--user"],
 					)}
+					hasError={UserHasError}
 				/>
 			</Dialog>
 		</Fragment>

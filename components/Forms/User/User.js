@@ -1,16 +1,18 @@
 import styles from "./user.module.scss";
 import cn from "classnames";
 
-export default function User({ onSubmit = (f) => f, modificator = "" }) {
+export default function User({
+	onSubmit = (f) => f,
+	modificator = "",
+	hasError = true,
+}) {
 	return (
 		<form onSubmit={onSubmit} className={cn(styles.form, modificator)}>
-			<div className={styles.form__group}>
-				<label
-					htmlFor="formConrol--name"
-					className={cn("visually-hidden", styles.form__label)}
-				>
-					Full name
-				</label>
+			<div
+				className={cn(styles.form__group, "formGroup", {
+					["formGroup_has_error"]: hasError,
+				})}
+			>
 				<input
 					type="text"
 					name="name"
@@ -22,14 +24,18 @@ export default function User({ onSubmit = (f) => f, modificator = "" }) {
 					placeholder="Full name"
 					className={cn("formControl", styles.form__control)}
 				/>
-			</div>
-			<div className={styles.form__group}>
 				<label
-					htmlFor="formConrol--email"
-					className={cn("visually-hidden", styles.form__label)}
+					htmlFor="formConrol--name"
+					className={cn(/*"visually-hidden",*/ "formLabel", styles.form__label)}
 				>
-					Email address
+					Full name
 				</label>
+			</div>
+			<div
+				className={cn(styles.form__group, "formGroup", {
+					["formGroup_has_error"]: hasError,
+				})}
+			>
 				<input
 					type="email"
 					name="email"
@@ -38,6 +44,12 @@ export default function User({ onSubmit = (f) => f, modificator = "" }) {
 					placeholder="Email address"
 					className={cn("formControl", styles.form__control)}
 				/>
+				<label
+					htmlFor="formConrol--email"
+					className={cn(/*"visually-hidden",*/ "formLabel", styles.form__label)}
+				>
+					Email address
+				</label>
 			</div>
 			<button className={cn("btn", styles.form__submit)} type="submit">
 				Next

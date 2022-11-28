@@ -5,17 +5,16 @@ export default function ZIP({
 	modificator = "",
 	onSubmit = (f) => f,
 	completed = false,
+	hasError = true,
 }) {
 	return (
 		<form className={cn(styles.zip, modificator)} onSubmit={onSubmit}>
 			<h3 className={styles.zip__title}>What is your ZIP Code?</h3>
-			<div className={styles.zip__formGroup}>
-				<label
-					htmlFor="form-control--zip"
-					className={cn("visually-hidden", styles.zip__label)}
-				>
-					Enter your your ZIP Code?
-				</label>
+			<div
+				className={cn(styles.zip__formGroup, "formGroup", {
+					["formGroup_has_error"]: hasError,
+				})}
+			>
 				<input
 					type="text"
 					name="zip"
@@ -28,9 +27,15 @@ export default function ZIP({
 					className={cn("formControl", styles.zip__formControl)}
 					disabled={completed}
 				/>
-				<div className={cn("formHelper", styles.zip__formHelper)}>
-					Free, no-obligation estimates.
-				</div>
+				<label
+					htmlFor="form-control--zip"
+					className={cn(/*"visually-hidden", */ "formLabel", styles.zip__label)}
+				>
+					Enter ZIP Code
+				</label>
+			</div>
+			<div className={cn("formHelper", styles.zip__formHelper)}>
+				Free, no-obligation estimates.
 			</div>
 			<button
 				type="submit"

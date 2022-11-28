@@ -1,4 +1,4 @@
-@use "sass:math";
+@use "@sass-fairy/math/math";
 @use "sass:color";
 @use "./conf";
 @use "./mix";
@@ -169,6 +169,7 @@ body {
 }
 
 .formControl {
+	$-bgc: conf.$selago;
 	&[type="text"],
 	&[type="color"],
 	&[type="date"],
@@ -181,9 +182,9 @@ body {
 	&[type="password"],
 	&[type="tel"] {
 		color: conf.$mine-shaft;
-		background-color: conf.$selago;
+		background-color: $-bgc;
 		padding: math.div(10, 14) + 0em math.div(16, 14) + 0em;
-		border: 1px solid conf.$selago;
+		border: 1px solid $-bgc;
 		border-radius: 0.25rem;
 		font-size: math.div(14, 16) + 0rem;
 		line-height: math.div(17, 14);
@@ -192,7 +193,7 @@ body {
 		font-weight: 500;
 
 		&::placeholder {
-			color: #646464;
+			color: transparent;
 		}
 
 		&:hover {
@@ -202,10 +203,30 @@ body {
 
 		&:focus {
 			border-color: conf.$royal-blue;
+
+			&::placeholder {
+				@if (math.unitless(color.blackness($-bgc)) > 50) {
+					color: color.change(
+						conf.$dove-gray,
+						$blackness: 10%,
+						$whiteness: 90%
+					);
+				} @else {
+					color: conf.$dove-gray;
+				}
+			}
+
+			~ .formLabel {
+				top: 17%;
+				font-size: math.div(10, 16) + 0rem;
+			}
 		}
 
-		&.formControl--error {
-			border-color: conf.$guardsman-red;
+		&:not(:placeholder-shown) {
+			~ .formLabel {
+				top: 17%;
+				font-size: math.div(10, 16) + 0rem;
+			}
 		}
 
 		&[disabled] {
@@ -219,6 +240,71 @@ body {
 			transition-duration: var(--animation-duration);
 			transition-timing-function: var(--animation-timing-function);
 		}
+	}
+}
+
+.formGroup {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	+ .formHelper {
+		margin-top: math.div(-9, 16) + rem;
+	}
+
+	&_has {
+		&_error {
+			.formControl {
+				&[type="text"],
+				&[type="color"],
+				&[type="date"],
+				&[type="datetime"],
+				&[type="datetime-local"],
+				&[type="email"],
+				&[type="file"],
+				&[type="month"],
+				&[type="number"],
+				&[type="password"],
+				&[type="tel"] {
+					border-color: conf.$guardsman-red;
+
+					&:focus,
+					&:not(:placeholder-shown) {
+						~ .formLabel {
+							color: conf.$guardsman-red;
+						}
+					}
+				}
+			}
+
+			+ .formHelper {
+				color: conf.$guardsman-red;
+			}
+		}
+	}
+}
+
+.formLabel {
+	@include mix.isomorphic-color-contrast(
+		conf.$selago,
+		conf.$mine-shaft,
+		color.invert(conf.$mine-shaft, 100%)
+	);
+
+	order: -1;
+	position: absolute;
+	font-weight: 500;
+	font-size: math.div(14, 16) + 0rem;
+	line-height: math.div(17, 14);
+	top: 50%;
+	left: calc(#{math.div(16, 14) + 0rem} - 2px);
+	right: calc(#{math.div(16, 14) + 0rem} - 2px);
+	transform: translateY(-50%);
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition-property: font-size, top;
+		transition-duration: var(--animation-duration);
+		transition-timing-function: var(--animation-timing-function);
 	}
 }
 
