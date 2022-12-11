@@ -1,4 +1,4 @@
-![home buddy - full home page screenshot, with day and night demonstration separated verticaly in the middle](https://github.com/Andrew-Dyachenko/home-buddy/raw/6210adca8f9b68550f71abe20c36f573fbed1411/public/img/Screenshot_2022-12-09_at_22-05-50_Home.png)
+![home buddy - full home page screenshot, with day and night demonstration separated verticaly in the middle](https://raw.githubusercontent.com/Andrew-Dyachenko/home-buddy/master/public/img/Screenshot_2022-12-09_at_22-05-50_Home_x1.png)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
