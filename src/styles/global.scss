@@ -98,14 +98,9 @@ body {
 .callout {
 	$-bgc: conf.$selago;
 
-	@include mix.isomorphic-color-contrast(
-		conf.$body-bg,
-		$-bgc,
-		color.invert($-bgc, 100%),
-		background-color
-	);
+	@include mix.isomorphic-color-contrast(conf.$body-bg, $-bgc, color.invert($-bgc, 100%), background-color);
 
-	@include mix.isomorphic-color-contrast($-bgc, conf.$white, conf.$black);
+	@include mix.isomorphic-color-contrast(color.invert($-bgc, 100%), conf.$white, conf.$black);
 
 	@include mix.isomorphic-color-contrast(
 		conf.$body-bg,

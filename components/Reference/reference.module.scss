@@ -93,6 +93,8 @@
 	}
 
 	&__callout {
+		$-bgc: conf.$selago;
+		background-color: $-bgc;
 		border-width: 0;
 		margin-left: auto;
 		margin-right: auto;
@@ -101,6 +103,8 @@
 		@media (max-width: #{conf.$s - 1}) {
 			display: none;
 		}
+
+		@include mix.isomorphic-color-contrast($-bgc, conf.$white, conf.$black);
 	}
 
 	&__title {
