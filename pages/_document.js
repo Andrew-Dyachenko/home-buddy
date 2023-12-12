@@ -73,6 +73,12 @@ class MyDocument extends Document {
 					/> */}
 				</Head>
 				<body>
+					<noscript>
+						You need to enable JavaScript to run this app.
+						<div>
+							<img src="https://mc.yandex.ru/watch/91366449" style={{position: 'absolute', left: '-9999px'}} alt="yandex metrika noscript watcher"/>
+						</div>
+					</noscript>
 					<Main />
 					<NextScript />
 				</body>
